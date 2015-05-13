@@ -2,11 +2,50 @@
 % Please edit documentation in R/loryR.R
 \name{loryR}
 \alias{loryR}
-\title{<Add Title>}
+\title{Make a lory.js slider of images from R}
 \usage{
-loryR(message, width = NULL, height = NULL)
+loryR(images = NULL, images_per_page = NULL, options = list(),
+  width = NULL, height = NULL)
+}
+\arguments{
+\item{images}{\code{list} of image urls or \code{base64} encoded src to include in the slider.}
+
+\item{images_per_page}{\code{integer} number of images shown at one time in the slider.  This
+argument will try to intelligently apply a \code{CSS} width to each image so that it fits
+as expected in the slider.}
+
+\item{options}{\code{list} of options for lory.js.  See
+\href{https://github.com/meandmax/lory#options}{lory documentation}.}
+
+\item{width}{a valid \code{CSS} width}
+
+\item{height}{a valid \code{CSS} height}
 }
 \description{
-<Add Description>
+lory.js is a very nice dependency-free slider javascript library.  With \code{loryR}
+we can incorporate our R plots easily into HTML and R markdown.
+}
+\examples{
+\dontrun{
+
+library(loryR)
+
+# make some sample plots
+plot(1:10,col="red")
+contour(volcano)
+lattice::xyplot(x~0:90, data.frame(x=cos(0:90/90)))
+
+# if in RStudio we can get a gallery of our plots
+images <- Filter(Negate(is.null),lapply(
+  list.files(tempdir(),"png",recursive=T,full.names=T)
+  ,function(p){
+    if(grepl(x=p,pattern="rs-graphics") && !(grepl(x=p,pattern="empty"))){
+      base64enc::dataURI(file=p, mime="image/png")
+    }
+  }
+))
+
+loryR(images, images_per_page = 2, width = "90\%", options = list(rewind=T))
+}
 }
 

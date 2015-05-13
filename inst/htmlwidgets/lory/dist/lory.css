@@ -1,4 +1,4 @@
-.frame {
+.loryR .frame {
     position: relative;
     font-size: 0;
     line-height: 0;
@@ -6,11 +6,29 @@
     white-space: nowrap;
 }
 
-.slides {
+.loryR .slides {
     display: inline-block;
 }
 
-li {
+.loryR .slides li {
     position: relative;
     display: inline-block;
+}
+
+.loryR span.prev, .loryR span.next {
+    position: relative;
+    margin-top: -25px;
+    cursor: pointer;
+}
+
+.loryR span.next {
+    left: 97%;
+}
+
+.loryR span.prev {
+    left: 3%;
+}
+
+.loryR .next svg, .loryR .prev svg {
+    width: 25px;
 }

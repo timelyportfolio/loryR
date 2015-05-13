@@ -2,5 +2,8 @@
 
 export(loryR)
 export(loryROutput)
+export(loryR_html)
 export(renderLoryR)
+import(base64enc)
+import(htmltools)
 import(htmlwidgets)
