@@ -1,0 +1,21 @@
+Package: loryR
+Type: Package
+Title: slider htmlwidget for your images based on lory.js
+Version: 0.1
+Date: 2015-05-13
+Author: c(
+          person(
+            "Maximilian", "Heinz"
+            , role = c("aut", "cph")
+            , comment = "lory.js library in htmlwidgets/lory.js, https://github.com/meandmax/lory.js"
+          ),
+          person(
+            "Kenton","Russell"
+            , role = c("aut","cre")
+            , comment = "R interface"
+            , email = "kent.russell@timelyportfolio.com"
+          )
+Maintainer: Kent Russell<kent.russell@timelyportfolio.com>
+Description: More about what it does (maybe more than one line)
+License: MIT + file LICENSE
+LazyData: TRUE

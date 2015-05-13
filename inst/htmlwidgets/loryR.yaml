@@ -1,0 +1,6 @@
+dependencies:
+  - name: lory
+    version: 0.4.6
+    src: htmlwidgets/lory/dist
+    script: lory.min.js
+    stylesheet: lory.css

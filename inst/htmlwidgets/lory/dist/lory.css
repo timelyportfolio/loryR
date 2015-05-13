@@ -1,0 +1,16 @@
+.frame {
+    position: relative;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.slides {
+    display: inline-block;
+}
+
+li {
+    position: relative;
+    display: inline-block;
+}
