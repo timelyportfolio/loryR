@@ -23,19 +23,12 @@
 #' lattice::xyplot(x~0:90, data.frame(x=cos(0:90/90)))
 #'
 #' # if in RStudio we can get a gallery of our plots
-#' images <- Filter(Negate(is.null),lapply(
-#'   list.files(tempdir(),"png",recursive=T,full.names=T)
-#'   ,function(p){
-#'     if(grepl(x=p,pattern="rs-graphics") && !(grepl(x=p,pattern="empty"))){
-#'       base64enc::dataURI(file=p, mime="image/png")
-#'     }
-#'   }
-#' ))
+#' images <- rstudio_gallery()
 #'
 #' loryR(images, images_per_page = 2, width = "90%", options = list(rewind=T))
 #' }
 #'
-#' @import htmlwidgets base64enc htmltools
+#' @import htmlwidgets htmltools
 #'
 #' @export
 loryR <- function(images = NULL, images_per_page = NULL, options = list(), width = NULL, height = NULL) {
