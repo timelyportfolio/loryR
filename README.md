@@ -1,0 +1,2 @@
+# loryR
+lory slider htmlwidget
