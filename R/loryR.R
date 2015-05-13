@@ -73,7 +73,9 @@ renderLoryR <- function(expr, env = parent.frame(), quoted = FALSE) {
 }
 
 
-#' @export
+#' Custom html for the lory.js HTML structure
+#'
+#'   @export
 loryR_html <- function(id, style, class, ...) {
   list(
     tags$div( id = id, class = class, class = "slider js_variablewidth variablewidth", style = style
