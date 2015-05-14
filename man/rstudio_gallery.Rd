@@ -4,10 +4,15 @@
 \alias{rstudio_gallery}
 \title{Gallery of RStudio Plots}
 \usage{
-rstudio_gallery()
+rstudio_gallery(img = NULL)
+}
+\arguments{
+\item{img}{numeric vector containing indices for which plots to suggest.
+Defaults to NULL, in which case all plots will be used.}
 }
 \description{
-rstudio_gallery() is a convenience function to grab all the plots from your RStudio history and
-return the images as a \code{list} of \code{base64} encoded images.
+rstudio_gallery() is a convenience function to grab all the plots from your
+RStudio history and return the images as a \code{list} of \code{base64}
+encoded images.
 }
 
