@@ -20,6 +20,51 @@ images <- rstudio_gallery()
 loryR(images, width = "90%", options = list(rewind=T))
 ```
 
+### Example | Using SVG
+
+With `SVG`, we can supply `UTF+8` instead of `base64`.  See this great [css-tricks article](https://css-tricks.com/probably-dont-base64-svg/) for more information on why we would want to do this.  Please note, this trick **does not work** for me in Firefox but **does work** in RStudio Viewer and Chrome.
+
+```r
+library(SVGAnnotation)
+library(loryR)
+library(pipeR)
+
+#let's use lattice and tmap
+library(lattice)
+library(tmap)
+
+lapply(
+  list(
+    svgPlot({plot(1:10)})
+    ,svgPlot({print(xyplot(x~x,data.frame(x=1:10),type="l"))},addInfo=F)
+    ,svgPlot({
+        print(
+          dotplot(variety ~ yield | site , data = barley, groups = year,
+                  key = simpleKey(levels(barley$year), space = "right"),
+                  xlab = "Barley Yield (bushels/acre) ",
+                  aspect=0.5, layout = c(1,6), ylab=NULL)        
+        )
+      }
+      ,addInfo=F
+    )
+    ,svgPlot({
+      data(World)
+      print(
+        tm_shape(World) + tm_fill("pop_est_dens", style="kmeans", title="Population density") + 
+            tm_layout_World("World Population", bg.color="lightblue")
+      )
+    })
+  )
+  ,function(sv){
+    paste0(
+      "data:image/svg+xml;utf8,"
+      ,saveXML(sv,prefix='')
+    )
+  }
+) %>>%
+  loryR( images_per_page = 1, height = 300 )
+
+```
 
 ### Example | Flickr
 
@@ -63,3 +108,4 @@ flickr_images <- list(
 
 loryR( flickr_images, width = "50%", images_per_page = 1, options = list(rewind=T) )
 ```
+
