@@ -1,0 +1,16 @@
+---
+title: "loryR Quick and Easy"
+author: "Kent Russell"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{loryR Quick and Easy}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+R users can employ a nice slider (or embedded slideshow/gallery) like `loryR` in many ways.  Let's look at two different uses to help us explore how to work with `loryR`.
+
+### Use 1 | RStudio Gallery
+
+As we bang away in RStudio, we can start to collect quite a few plots in our RStudio plots tab.  While we can explore our history with the forward/back buttons, I often want to quickly view or share some or all of these plots.
