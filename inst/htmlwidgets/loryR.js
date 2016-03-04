@@ -21,7 +21,8 @@ HTMLWidgets.widget({
         img.src = x.images[i];
         // try to smartly size images based on slides_per_page if provided
         if(!(x.images_per_page === null)){
-          img.style.width = el.clientWidth / x.images_per_page + "px"
+          img.style.width = el.getBoundingClientRect().width / x.images_per_page + "px";
+          img.style.height = el.getBoundingClientRect().height + "px";
         }
         var liEl = document.createElement("li")
         liEl.className = "js_slide"
