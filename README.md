@@ -25,7 +25,8 @@ loryR(images, width = "90%", options = list(rewind=T))
 With `SVG`, we can supply `UTF+8` instead of `base64`.  See this great [css-tricks article](https://css-tricks.com/probably-dont-base64-svg/) for more information on why we would want to do this.  Please note, this trick **does not work** for me in Firefox but **does work** in RStudio Viewer and Chrome.
 
 ```r
-library(SVGAnnotation)
+library(svglite)
+library(xml2)
 library(loryR)
 library(pipeR)
 
@@ -35,30 +36,29 @@ library(tmap)
 
 lapply(
   list(
-    svgPlot({plot(1:10)})
-    ,svgPlot({print(xyplot(x~x,data.frame(x=1:10),type="l"))},addInfo=F)
-    ,svgPlot({
+    xmlSVG({plot(1:10)},standalone=TRUE)
+    ,xmlSVG({print(xyplot(x~x,data.frame(x=1:10),type="l"))},standalone=TRUE)
+    ,xmlSVG({
         print(
           dotplot(variety ~ yield | site , data = barley, groups = year,
                   key = simpleKey(levels(barley$year), space = "right"),
                   xlab = "Barley Yield (bushels/acre) ",
                   aspect=0.5, layout = c(1,6), ylab=NULL)        
         )
-      }
-      ,addInfo=F
+      },standalone=TRUE
     )
-    ,svgPlot({
+    ,xmlSVG({
       data(World)
       print(
         tm_shape(World) + tm_fill("pop_est_dens", style="kmeans", title="Population density") + 
-            tm_layout_World("World Population", bg.color="lightblue")
+            tm_format_World("World Population", bg.color="lightblue")
       )
-    })
+    },standalone=TRUE)
   )
   ,function(sv){
     paste0(
       "data:image/svg+xml;utf8,"
-      ,saveXML(sv,prefix='')
+      ,as.character(sv)
     )
   }
 ) %>>%
